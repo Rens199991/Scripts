@@ -1,5 +1,4 @@
-﻿<#sdgsdg#>
-$servers = Get-ADComputer -Filter * -SearchBase "OU=ServersGalloo,DC=galloo,DC=com"
+﻿$servers = Get-ADComputer -Filter * -SearchBase "OU=ServersGalloo,DC=galloo,DC=com"
 $list = @()
 $failedserver = @()
 $count = 0 
