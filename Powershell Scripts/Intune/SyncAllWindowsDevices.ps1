@@ -1,9 +1,14 @@
-#Deze moet je runnen in de Windows Powershell ISE
-#Connect to MGGraph & MSGraph
+#Connnect-MSGraph --> This needed to be run in Powershell 5.1 --> Not support for Powershell Core Yet
+
+#Install Needed Modules
+Install-Module Microsoft.Graph.Intune
+Import-Module Microsoft.Graph.Intune 
+
+#Connect to MgGraph & MsGraph
 Connect-MgGraph  
 Connect-MSGraph
 
-
+#Get Context
 Get-MgContext
 
 
