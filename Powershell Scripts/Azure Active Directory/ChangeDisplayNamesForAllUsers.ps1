@@ -1,0 +1,1 @@
+import-csv "C:\Users\rens.sergier\Downloads\users_5-10-2021 15_14_37.csv" | ForEach-Object {Set-MsolUser -UserPrincipalName $_.UserPrincipalName -DisplayName $_.DisplayName}
