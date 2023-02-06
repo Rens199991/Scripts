@@ -1,4 +1,4 @@
-<#
+<#23
 A) First Create a GPO
 
 1.Go to Computer Configuration > Administrative Templates > Windows Components > BitLocker Drive Encryption > Operating System Drives.
