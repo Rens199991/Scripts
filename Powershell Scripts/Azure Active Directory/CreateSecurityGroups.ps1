@@ -8,7 +8,7 @@ Disconnect-MgGraph
 
 #Connect and verify that you are in right tenant
 Connect-AzAccount
-Connect-MgGraph -Scopes "Group.readwrite.all"
+Connect-MgGraph -Scopes "User.Read.All","Group.ReadWrite.All"
 
 Get-AzContext | Format-Table Account 
 Get-MgContext | Format-Table Account
