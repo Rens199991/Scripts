@@ -3,19 +3,13 @@
 #Install-Module Microsoft.Graph -Scope CurrentUser
 
 #Disconnect multiple times to sign off ot other tenants
-Disconnect-AzAccount
 Disconnect-MgGraph
 
 #Connect and verify that you are in right tenant
-Connect-AzAccount
 Connect-MgGraph -Scopes "User.ReadWrite.All","Group.ReadWrite.All"
 
-Get-AzContext | Format-Table Account 
+#Verify Context berore adding Groups
 Get-MgContext | Format-Table Account
-
-
-#https://docs.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0&tabs=http
-
 
 
 $common = @{
@@ -205,14 +199,6 @@ $iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices = @{
 
 
 
-
-
-
-
-
-
-
-
 New-MgGroup -BodyParameter ($common + $allUsersAndGuests)
 New-MgGroup -BodyParameter ($common + $allUsers)
 New-MgGroup -BodyParameter ($common + $AllGuests)
@@ -245,10 +231,6 @@ New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedFullyManagedwithoutW
 New-MgGroup -BodyParameter ($common + $iOSiPadOSDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedwithWorkprofileDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices)
-
-
-
-
 
 
 
