@@ -23,7 +23,7 @@ if (!$IntuneModule)
     exit
     }
 
-#Sync ll devices running Windows
+#Sync all devices running Windows
 $Devices = Get-IntuneManagedDevice -Filter "contains(operatingsystem,'Windows')"
 Foreach ($Device in $Devices)
     { 
