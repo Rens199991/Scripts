@@ -5,7 +5,6 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\DeleteWindowsUpdatesReg
     Set-Content -Path "$($env:ProgramData)\CXN\Scripts\DeleteWindowsUpdatesRegkeys\DeleteWindowsUpdatesRegkeys.ps1.tag" -Value "Installed"
     }
 
-
 $Regkey = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
 Remove-Item -Path $Regkey -Recurse -Force
 
