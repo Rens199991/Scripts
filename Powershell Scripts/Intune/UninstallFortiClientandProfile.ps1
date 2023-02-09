@@ -1,4 +1,4 @@
-# Restart Process using PowerShell 64-bit 
+#Restart Process using PowerShell 64-bit 
 If ($ENV:PROCESSOR_ARCHITEW6432 -eq "AMD64") {
     Try {
         &"$ENV:WINDIR\SysNative\WindowsPowershell\v1.0\PowerShell.exe" -File $PSCOMMANDPATH
