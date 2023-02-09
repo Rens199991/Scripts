@@ -8,7 +8,7 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\CreateURLShortcutToDesk
 #Declare Variables,deze gaan aanpassen naargelang de klant, eerste 2 commanden als je geen custom icon nodig hebt
 #$publiciconpath = "https://saprfintune.blob.core.windows.net/resources/Icons/Servicedesk.ico"
 #$privateiconpath = "$($env:ProgramData)\CXN\Scripts\Icons\icon.ico"
-$NameUrl = "\\My WorkSpace.lnk"
+$NameUrl = "\\My WorkSpaceVHB.lnk"
 
 <#
 #Get icon and copy to Icon folder, deze blok commanden als je geen custom icon nodig hebt
@@ -25,7 +25,7 @@ $destination = $new_object.SpecialFolders.Item('AllUsersDesktop')
 #Bij Childpath de naam ingeven van de Url die je wenst te zien op uw desktop, 4 lijn commanden als je geen custom icon nodig hebt
 $source_path = Join-Path -Path $destination -ChildPath $NameUrl
 $source = $new_object.CreateShortcut($source_path)
-$source.TargetPath = 'https://remoteapps.vanhonsebrouck.be/RDWeb/feed/webfeed.aspx'
+$source.TargetPath = 'https://remoteapps.vanhonsebrouck.be/RDWeb'
 #$source.IconLocation = $privateiconpath
 $source.Save() 
 
