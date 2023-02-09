@@ -6,6 +6,6 @@ if(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\CreateShortcutInStartMe
     }
 
 $objShell = New-Object -ComObject ("WScript.Shell")
-$objShortCut = $objShell.CreateShortcut("C:\Users\All Users\Microsoft\Windows\Start Menu\Programs" + "\Remote Desktop.lnk")
+$objShortCut = $objShell.CreateShortcut("C:\ProgramData\Microsoft\Windows\Start Menu\Programs" + "\Remote Desktop.lnk")
 $objShortCut.TargetPath="C:\Program Files\Remote Desktop\msrdcw.exe"
 $objShortCut.Save()

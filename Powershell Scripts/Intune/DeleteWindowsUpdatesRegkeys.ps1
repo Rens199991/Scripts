@@ -7,7 +7,6 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\DeleteWindowsUpdatesReg
 
 
 $Regkey = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
- 
 Remove-Item -Path $Regkey -Recurse -Force
 
 
