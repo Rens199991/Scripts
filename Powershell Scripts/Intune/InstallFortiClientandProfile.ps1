@@ -1,5 +1,15 @@
+# Restart Process using PowerShell 64-bit 
+If ($ENV:PROCESSOR_ARCHITEW6432 -eq "AMD64") {
+    Try {
+        &"$ENV:WINDIR\SysNative\WindowsPowershell\v1.0\PowerShell.exe" -File $PSCOMMANDPATH
+    }
+    Catch {
+        Throw "Failed to start $PSCOMMANDPATH"
+    }
+    Exit
+}
 #Install FortiClient VPN
-Start-Process Msiexec.exe  -ArgumentList '/i FortiClientVPN.msi REBOOT=ReallySuppress /qn' -Wait
+Start-Process Msiexec.exe -Wait -ArgumentList '/i FortiClientVPN.msi TRANSFORMS=FortiClientVPN.mst REBOOT=ReallySuppress /qn'
 
 # Install VPN Profiles
 if((Test-Path -LiteralPath "HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\VPN Vanhonsebrouck") -ne $true) 
