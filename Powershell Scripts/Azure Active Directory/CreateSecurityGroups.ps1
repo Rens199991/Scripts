@@ -242,8 +242,9 @@ New-MgGroup -DisplayName 'NON-Compliant Users'  -MailEnabled:$False  -MailNickNa
 New-MgGroup -DisplayName 'NON-Approved Client App Users'  -MailEnabled:$False  -MailNickName 'NON-ApprovedClientAppUsers' -SecurityEnabled:$true 
 New-MgGroup -DisplayName 'NON-Blocked Countries Users'  -MailEnabled:$False  -MailNickName 'NON-BlockedCountriesUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Windows Update Test Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingUsers' -SecurityEnabled:$true
-New-MgGroup -DisplayName 'Windows Update Test Ring Devices'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingDevices' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Management Users'  -MailEnabled:$False  -MailNickName 'ManagementUsers' -SecurityEnabled:$true
+
+New-MgGroup -DisplayName 'Windows Intune Pilot Devices'  -MailEnabled:$False  -MailNickName 'WindowsIntunePilotDevices' -SecurityEnabled:$true
 
 New-MgGroup -DisplayName 'Android Personally-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidPersonally-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Android Corporate-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidCorporate-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
