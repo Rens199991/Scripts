@@ -1,6 +1,5 @@
 #Extra uitleg: https://workplaceascode.com/2020/04/17/distribute-custom-backgrounds-for-teams-via-intune/
 $source = "https://hlbteamstrg.blob.core.windows.net/teamswallpapers/teamswallpapers.zip"
-#Test3
 
 Start-BitsTransfer -Source $source -Destination $env:temp
 $filename =  Split-Path -Path $source -Leaf
