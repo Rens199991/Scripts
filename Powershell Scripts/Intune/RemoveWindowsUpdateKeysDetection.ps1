@@ -1,7 +1,5 @@
 $Doeskeyvaluexist = Get-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUOptions" 
 
-
-
 if ($null -eq $Doeskeyvaluexist)
     {
      #Create a tag file just so Intune knows this was installed

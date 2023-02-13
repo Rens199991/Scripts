@@ -1,24 +1,24 @@
-if ((Test-Path -Path "C:\hpia"))
+if ((-not(Test-Path -Path "C:\hpia")))
     {
     #Create a tag file just so Intune knows this was installed
-    If(-not(Test-Path -Path "$($env:ProgramData))\CXN\Scripts\HPRunningImageAssistantDRNeeded"))
+    If(-not(Test-Path -Path "$($env:ProgramData))\CXN\Scripts\HPRunningImageAssistantDRNOTMissingDependency"))
         {
-        New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNeeded"
-        Set-Content -Path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNeeded\HPRunningImageAssistantDRNeeded.ps1.tag" -Value "Installed"
+        New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNOTMissingDependency"
+        Set-Content -Path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNOTMissingDependency\HPRunningImageAssistantDRNOTMissingDependency.ps1.tag" -Value "Installed"
         }
-        Write-Output "Remediation needed"
-        exit 1  
+        Write-Output "No Remediation needed"
+        exit 0  
     }
 else 
     {
     #Create a tag file just so Intune knows this was installed
-    If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNOTMissingDependency"))
+    If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNeeded"))
         {
-        New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNOTMissingDependency"
-        Set-Content -Path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNOTMissingDependency\HPRunningImageAssistantDRNOTDRNOTMissingDependency.ps1.tag" -Value "Installed"
+        New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNeeded"
+        Set-Content -Path "$($env:ProgramData)\CXN\Scripts\HPRunningImageAssistantDRNeeded\HPRunningImageAssistantDRNeeded.ps1.tag" -Value "Installed"
         } 
-    Write-Output "No Remediation Needed"
-    exit 0   
+    Write-Output "Remediation Needed"
+    exit 1   
     }
 
 
