@@ -1,3 +1,5 @@
+#Set Location to C:
+Set-Location "C:\"
 
 # Check that AzureAD is installed
 if (-Not (Get-Module -ListAvailable -Name AzureAD)) {
