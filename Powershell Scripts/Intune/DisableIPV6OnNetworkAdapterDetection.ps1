@@ -1,6 +1,6 @@
 $IsIPV6EnabledOnAdapter = Get-NetAdapterBinding -ComponentID ms_tcpip6 | Where-Object {$_.Name -eq "Wi-fi" -and $_.Enabled -eq "True"}
 
-If ($null -eq $IsIPV6EnabledOnAdapter)
+If ($IsIPV6EnabledOnAdapter.Enabled -ne "True")
     {
     #Create a tag file just so Intune knows this was installed
     If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\DisableIPV6OnNetworkAdapterDetectionDRNOT"))
