@@ -1,4 +1,4 @@
-$Doeskeyvaluexist = Get-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUOptions" 
+$Doeskeyvaluexist = Get-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUOptions" -ErrorAction SilentlyContinue
 
 if ($null -eq $Doeskeyvaluexist)
     {
