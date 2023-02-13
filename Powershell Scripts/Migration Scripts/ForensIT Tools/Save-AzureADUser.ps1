@@ -1,3 +1,4 @@
+#Does not run in Powershell 7!
 #Set Location to C:
 Set-Location "C:\"
 
