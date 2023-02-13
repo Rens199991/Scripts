@@ -1,5 +1,4 @@
 #Extra uitleg: https://workplaceascode.com/2020/04/17/distribute-custom-backgrounds-for-teams-via-intune/
-#TEST2
 
 $source = "https://hlbteamstrg.blob.core.windows.net/teamswallpapers/teamswallpapers.zip"
 
