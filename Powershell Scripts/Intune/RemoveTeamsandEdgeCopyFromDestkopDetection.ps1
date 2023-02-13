@@ -39,27 +39,29 @@ foreach ($OneDriveLocation in $OneDriveLocations)
     $icons += $TeamsIcons
     }
 
-if (($icons.count -gt "0")) 
+if (($icons.count -eq "0")) 
     {
     #Start remediation
-    write-host "Start remediation"
-    If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNeeded"))
-        {
-        New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNeeded"
-        Set-Content -Path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNeeded\RemoveTeamsandEdgeCopyFromDestkopDRNeeded.ps1.tag" -Value "Installed"
-        }
-    exit 1
-        }
-else 
-    {
-    #No remediation required    
-    write-host "No remediation"
+    
     If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNOT"))
         {
         New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNOT"
         Set-Content -Path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNOT\RemoveTeamsandEdgeCopyFromDestkopDRNOT.ps1.tag" -Value "Installed"
         }
+        write-host "No Remediation Needed"
     exit 0
+        }
+else 
+    {
+    #No remediation required    
+    
+    If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNeeded"))
+        {
+        New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNeeded"
+        Set-Content -Path "$($env:ProgramData)\CXN\Scripts\RemoveTeamsandEdgeCopyFromDestkopDRNeeded\RemoveTeamsandEdgeCopyFromDestkopDRNeeded.ps1.tag" -Value "Installed"
+        }
+    write-host "Remediation Needed"    
+    exit 1
     }   
     
 
