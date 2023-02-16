@@ -1,0 +1,1 @@
+Start-Process -FilePath "C:\TravelNote\travelnoteupdate.exe" -ArgumentList @("/SilentCheck") -Wait
