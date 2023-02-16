@@ -9,5 +9,4 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\RemoveBuiltInTeamsR"))
 #Script removes the new Microsoft Teams consumer app on Windows 11.
 #App is removed because this app can only be used with personal Microsoft accounts
 
-
 Get-AppxPackage -Name MicrosoftTeams | Remove-AppxPackage
