@@ -1,3 +1,6 @@
+Install-Module ExchangeOnlineManagement
+Import-Module ExchangeOnlineManagement
+Connect-Exchangeonline
 $Dkimdomein = Read-Host "Voor welk domein wilt u de DKIM keys genereren?"
 New-DkimSigningConfig -DomainName $Dkimdomein -Enabled $false
 Start-Sleep -Seconds 10
