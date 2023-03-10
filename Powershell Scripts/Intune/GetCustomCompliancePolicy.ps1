@@ -1,6 +1,6 @@
 ##Which OS
 ##Check if we are running Win10 or 11
-$OSname = Get-WMIObject win32_operatingsystem | select Caption
+$OSname = Get-WMIObject win32_operatingsystem | Select-Object Caption
 if ($OSname -like "*Windows 10*") {
     $OSname = "Windows 10"
 }
