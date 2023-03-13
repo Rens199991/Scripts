@@ -7,6 +7,10 @@ If (-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\RestoreLanguagesNew"))
 #Retrieves all installed languagepacks
 $LanguageList = Get-WinUserLanguageList
 
+
+#Clears Languagepacks
+$LanguageList.Clear()
+
 #Adds Installedlanguagepacks
 $LanguageList.Add("en-BE")
 $LanguageList.Add("fr-FR")
@@ -23,4 +27,4 @@ Set-WinHomeLocation -GeoId 21
 Set-WinDefaultInputMethodOverride '2000:00000813'
 
 #Sets Displaylanguage
-Set-WinUILanguageOverride en-US
+Set-WinUILanguageOverride en-BE
