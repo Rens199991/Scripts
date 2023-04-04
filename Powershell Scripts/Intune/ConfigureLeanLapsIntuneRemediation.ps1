@@ -4,7 +4,7 @@ if(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\ConfigureLeanLapsR"))
     Set-Content -Path "$($env:ProgramData)\CXN\Scripts\ConfigureLeanLapsR\ConfigureLeanLapsR.ps1.tag" -Value "Installed"
     }
 
-$minimumPasswordLength = 15
+$minimumPasswordLength = 8
 $publicEncryptionKey = "" #if you supply a public encryption key, leanLaps will use this to encrypt the password, ensuring it will only be in encrypted form in Proactive Remediations
 $localAdminName = 'LapsAdmin'
 $autoEnableLocalAdmin = $True #if for some reason the admin account this script creates becomes disabled, leanLAPS will re-enable it
