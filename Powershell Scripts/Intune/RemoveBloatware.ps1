@@ -691,8 +691,10 @@ if ($manufacturer -like "*Dell*")
             "Dell SUpportAssist Remediation"
             "Dell Optimizer Service"
             "Dell OS Recovery Tool"
-            "Dell Digital Delivery"
-            "Dell Digital Delivery Services"
+            "Dell Command | Update"
+            "Dell Command | Update for Windows 10"
+            "Dell Display Manager 2.0"
+            "Dell Core Services"   
         )
 
     $InstalledPackages = Get-AppxPackage -AllUsers | Where-Object {($UninstallPackages -contains $_.Name)} 
