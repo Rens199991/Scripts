@@ -4,7 +4,6 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\DellRunningCommandUpdat
     Set-Content -Path "$($env:ProgramData)\CXN\Scripts\DellRunningCommandUpdate\DellRunningCommandUpdate.ps1.tag" -Value "Installed"
     }
 
-
 #Begin script
 $DCU_folder = "C:\Program Files (x86)\Dell\CommandUpdate"
 $DCU_report = "C:\Temp\Dell_report\update.log"
