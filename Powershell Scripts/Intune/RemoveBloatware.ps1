@@ -691,8 +691,8 @@ if ($manufacturer -like "*Dell*")
             "Dell SUpportAssist Remediation"
             "Dell Optimizer Service"
             "Dell OS Recovery Tool"
-            "Dell Command | Update"
-            "Dell Command | Update for Windows 10"
+            #"Dell Command | Update"
+            #"Dell Command | Update for Windows 10"
             #"Dell Display Manager 2.0"
             "Dell Core Services"   
         )
