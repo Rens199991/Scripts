@@ -243,6 +243,8 @@ New-MgGroup -DisplayName 'NON-Approved Client App Users'  -MailEnabled:$False  -
 New-MgGroup -DisplayName 'NON-Blocked Countries Users'  -MailEnabled:$False  -MailNickName 'NON-BlockedCountriesUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'NON-LegacyAuth Users'  -MailEnabled:$False  -MailNickName 'NON-LegacyAuthUsers' -SecurityEnabled:$true
 
+New-MgGroup -DisplayName 'Internal Login Users'  -MailEnabled:$False  -MailNickName 'InternalLoginUsers' -SecurityEnabled:$true
+
 New-MgGroup -DisplayName 'Windows Update Test Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Management Users'  -MailEnabled:$False  -MailNickName 'ManagementUsers' -SecurityEnabled:$true
 
