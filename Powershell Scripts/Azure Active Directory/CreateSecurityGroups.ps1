@@ -241,6 +241,8 @@ New-MgGroup -DisplayName 'NON-MFA Users'  -MailEnabled:$False  -MailNickName 'NO
 New-MgGroup -DisplayName 'NON-Compliant Users'  -MailEnabled:$False  -MailNickName 'NON-CompliantUsers' -SecurityEnabled:$true  
 New-MgGroup -DisplayName 'NON-Approved Client App Users'  -MailEnabled:$False  -MailNickName 'NON-ApprovedClientAppUsers' -SecurityEnabled:$true 
 New-MgGroup -DisplayName 'NON-Blocked Countries Users'  -MailEnabled:$False  -MailNickName 'NON-BlockedCountriesUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'NON-LegacyAuth Users'  -MailEnabled:$False  -MailNickName 'NON-LegacyAuthUsers' -SecurityEnabled:$true
+
 New-MgGroup -DisplayName 'Windows Update Test Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Management Users'  -MailEnabled:$False  -MailNickName 'ManagementUsers' -SecurityEnabled:$true
 
