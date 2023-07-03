@@ -15,7 +15,7 @@ If ($Registry -eq $Value)
     Write-Output "No Remediation Needed"    
     Exit 0
     }
-El
+Else
     {
     #Create a tag file just so Intune knows this was installed
     If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\EnableDNSOverHTTPSDRNEEDED"))
