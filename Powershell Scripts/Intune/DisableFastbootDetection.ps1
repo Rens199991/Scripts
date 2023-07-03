@@ -1,7 +1,7 @@
 $Path = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power"
 $Name = "HiberbootEnabled"
 $Value = 0
-$Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction Stop | Select-Object -ExpandProperty $Name
+$Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction "SilentlyContinue" | Select-Object -ExpandProperty $Name
 
 If ($Registry -eq $Value)
     {

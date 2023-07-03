@@ -1,7 +1,7 @@
 $Path = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Options"
 $Name = "DisablePOP3"
 $Value = 1
-$Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction Stop | Select-Object -ExpandProperty $Name
+$Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction "SilentlyContinue" | Select-Object -ExpandProperty $Name
 
 
 If ($Registry -eq $Value)

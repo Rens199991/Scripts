@@ -1,7 +1,7 @@
 $Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 $Name = "DesktopImagePath"
 $Value = "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundRemediationR\Wallpaper.jpg"
-$Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction Stop | Select-Object -ExpandProperty $Name
+$Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction "SilentlyContinue" | Select-Object -ExpandProperty $Name
 
 if ($Registry -eq $Value)
     {
