@@ -1,15 +1,17 @@
-#MacOS groepen nog inbegrepen
 #Install needed Modules
 #Install-Module Microsoft.Graph -Scope CurrentUser
 
 #Disconnect multiple times to sign off ot other tenants
+Disconnect-AzAccount
 Disconnect-MgGraph
 
 #Connect and verify that you are in right tenant
-Connect-MgGraph -Scopes "User.ReadWrite.All","Group.ReadWrite.All"
+Connect-AzAccount
+Connect-MgGraph -Scopes "Group.readwrite.all"
+Get-AzContext   
+Get-MgContext
 
-#Verify Context berore adding Groups
-Get-MgContext | Format-Table Account
+#https://docs.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0&tabs=http
 
 
 $common = @{
@@ -21,7 +23,6 @@ $common = @{
     securityEnabled = $true
     MembershipRuleProcessingState = "on"
 }
-
 
 
 $allUsersAndGuests = @{
@@ -47,7 +48,6 @@ $AllGuests = @{
 
 
 
-
 $AllDevices = @{
     Description = 'All Devices'
     Displayname = 'All Devices'
@@ -67,7 +67,6 @@ $AllNotManagedDevices = @{
     mailnickname = 'AllNotManagedDevices'
     membershiprule = '(device.managementtype -ne "MDM")'
 }
-
 
 
 
@@ -109,7 +108,6 @@ $WindowsPersonallyOwnedManagedDevices = @{
 
 
 
-
 $WindowsAutopilotDevices = @{
     Description = 'Windows Autopilot Devices'
     Displayname = 'Windows Autopilot Devices'
@@ -130,7 +128,6 @@ $WindowsNotYetEnrolledAutopilotDevices = @{
 }
 
 
-
 $WindowsServersManagedbyMicrosoftDefender = @{
     Description = 'Windows Servers Managed by Microsoft Defender'
     Displayname = 'Windows Servers Managed by Microsoft Defender'
@@ -143,7 +140,6 @@ $MicrosoftSurfaceHubDevices = @{
     mailnickname = 'MicrosoftSurfaceHubsDevices'
     membershiprule = '(device.DeviceOSType -startsWith "SurfaceHub")'
 }
-
 
 
 
@@ -176,7 +172,6 @@ $AndroidCorporateOwnedFullyManagedwithoutWorkprofileDevices = @{
 
 
 
-
 $iOSiPadOSDevices = @{
     Description = 'iOS/iPadOS Devices'
     Displayname = 'iOS/iPadOS Devices'
@@ -199,35 +194,36 @@ $iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices = @{
 
 
 
+
+
+
+
+
+
+
 New-MgGroup -BodyParameter ($common + $allUsersAndGuests)
 New-MgGroup -BodyParameter ($common + $allUsers)
 New-MgGroup -BodyParameter ($common + $AllGuests)
-
 New-MgGroup -BodyParameter ($common + $AllDevices)
 New-MgGroup -BodyParameter ($common + $AllManagedDevices)
 New-MgGroup -BodyParameter ($common + $AllNotManagedDevices)
-
 New-MgGroup -BodyParameter ($common + $WindowsDevices )
 New-MgGroup -BodyParameter ($common + $WindowsManagedDevices)
 New-MgGroup -BodyParameter ($common + $WindowsNotManagedDevices)
 New-MgGroup -BodyParameter ($common + $WindowsCorporateOwnedManagedDevices)
 New-MgGroup -BodyParameter ($common + $WindowsPersonallyOwnedManagedDevices)
 
-
 New-MgGroup -BodyParameter ($common + $WindowsAutopilotDevices)
 New-MgGroup -BodyParameter ($common + $WindowsEnrolledAutopilotDevices)
 New-MgGroup -BodyParameter ($common + $WindowsNotYetEnrolledAutopilotDevices)
-
 New-MgGroup -BodyParameter ($common + $WindowsServersManagedbyMicrosoftDefender)
 New-MgGroup -BodyParameter ($common + $MicrosoftSurfaceHubDevices)
-
 
 
 New-MgGroup -BodyParameter ($common + $AndroidDevices)
 New-MgGroup -BodyParameter ($common + $AndroidPersonallyOwnedwithWorkprofileDevices)
 New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedwithWorkprofileDevices)
 New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedFullyManagedwithoutWorkprofileDevices)
-
 New-MgGroup -BodyParameter ($common + $iOSiPadOSDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedwithWorkprofileDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices)
@@ -237,22 +233,27 @@ New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedFullyManagedwitho
 
 
 
+
+
+
 New-MgGroup -DisplayName 'NON-MFA Users'  -MailEnabled:$False  -MailNickName 'NON-MFAUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'NON-Compliant Users'  -MailEnabled:$False  -MailNickName 'NON-CompliantUsers' -SecurityEnabled:$true  
-New-MgGroup -DisplayName 'NON-Approved Client App Users'  -MailEnabled:$False  -MailNickName 'NON-ApprovedClientAppUsers' -SecurityEnabled:$true 
+New-MgGroup -DisplayName 'NON-Approved Client App Users'  -MailEnabled:$False  -MailNickName 'NON-ApprovedClientAppUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'NON-Blocked Countries Users'  -MailEnabled:$False  -MailNickName 'NON-BlockedCountriesUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'NON-LegacyAuth Users'  -MailEnabled:$False  -MailNickName 'NON-LegacyAuthUsers' -SecurityEnabled:$true
 
 New-MgGroup -DisplayName 'Internal Login Users'  -MailEnabled:$False  -MailNickName 'InternalLoginUsers' -SecurityEnabled:$true
 
 New-MgGroup -DisplayName 'Windows Update Test Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'Windows Update Test Ring Devices'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingDevices' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'Windows Third Party Applications Update Fast Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsApplicationsUpdateFastUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'Windows Third Party Applications Update Slow Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsApplicationsUpdateSlowUsers' -SecurityEnabled:$true
+
 New-MgGroup -DisplayName 'Management Users'  -MailEnabled:$False  -MailNickName 'ManagementUsers' -SecurityEnabled:$true
 
-New-MgGroup -DisplayName 'Windows Intune Pilot Devices'  -MailEnabled:$False  -MailNickName 'WindowsIntunePilotDevices' -SecurityEnabled:$true
 
 New-MgGroup -DisplayName 'Android Personally-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidPersonally-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Android Corporate-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidCorporate-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Android Corporate-Owned Devices Fully Managed without Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidwithoutWorkprofileUsers' -SecurityEnabled:$true
-
 New-MgGroup -DisplayName 'iOS/iPadOS Personally-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'iOS/iPadOSPersonally-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'iOS/iPadOS Personally-Owned Fully Managed Devices without Workprofile Users' -MailEnabled:$False  -MailNickName 'iOS/iPadOSFullyManagedwithoutWorkprofileUsers' -SecurityEnabled:$true
