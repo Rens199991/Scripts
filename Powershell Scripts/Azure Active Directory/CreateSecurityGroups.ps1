@@ -244,10 +244,8 @@ New-MgGroup -DisplayName 'NON-LegacyAuth Users'  -MailEnabled:$False  -MailNickN
 
 New-MgGroup -DisplayName 'Internal Login Users'  -MailEnabled:$False  -MailNickName 'InternalLoginUsers' -SecurityEnabled:$true
 
-New-MgGroup -DisplayName 'Windows Update Test Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingUsers' -SecurityEnabled:$true
-New-MgGroup -DisplayName 'Windows Update Test Ring Devices'  -MailEnabled:$False  -MailNickName 'WindowsUpdateTestRingDevices' -SecurityEnabled:$true
-New-MgGroup -DisplayName 'Windows Third Party Applications Update Fast Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsApplicationsUpdateFastUsers' -SecurityEnabled:$true
-New-MgGroup -DisplayName 'Windows Third Party Applications Update Slow Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsApplicationsUpdateSlowUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'Windows Update Fast Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateSlowRingUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'Windows Update Slow Ring Users'  -MailEnabled:$False  -MailNickName 'WindowsUpdateSlowRingUsers' -SecurityEnabled:$true
 
 New-MgGroup -DisplayName 'Management Users'  -MailEnabled:$False  -MailNickName 'ManagementUsers' -SecurityEnabled:$true
 
