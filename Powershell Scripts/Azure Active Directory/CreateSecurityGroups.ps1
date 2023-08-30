@@ -240,7 +240,7 @@ New-MgGroup -DisplayName 'NON-MFA Users'  -MailEnabled:$False  -MailNickName 'NO
 New-MgGroup -DisplayName 'NON-Compliant Users'  -MailEnabled:$False  -MailNickName 'NON-CompliantUsers' -SecurityEnabled:$true  
 New-MgGroup -DisplayName 'NON-Approved Client App Users'  -MailEnabled:$False  -MailNickName 'NON-ApprovedClientAppUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'NON-Blocked Countries Users'  -MailEnabled:$False  -MailNickName 'NON-BlockedCountriesUsers' -SecurityEnabled:$true
-New-MgGroup -DisplayName 'NON-LegacyAuth Users'  -MailEnabled:$False  -MailNickName 'NON-LegacyAuthUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'NON-ModernAuth Users'  -MailEnabled:$False  -MailNickName 'NON-ModernAuthUsers' -SecurityEnabled:$true
 
 New-MgGroup -DisplayName 'Internal Login Users'  -MailEnabled:$False  -MailNickName 'InternalLoginUsers' -SecurityEnabled:$true
 
