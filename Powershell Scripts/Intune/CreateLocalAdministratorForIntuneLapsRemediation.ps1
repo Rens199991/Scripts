@@ -8,6 +8,7 @@ If (-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\CreateLocalAdministrat
 #Script
 $userName = "godmode"
 New-LocalUser -Name $username -Description "godmode local user account" -NoPassword
+Add-LocalGroupMember -Group "Administrators" -Member $userName
   
 
 
