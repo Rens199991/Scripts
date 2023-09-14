@@ -1,6 +1,7 @@
 #This must be tenant administration sharepoint site
 #This is the site of sharepoint Admin center: For example https://junctiongi-admin.sharepoint.com/
-Connect-SPOService  -Url 
+Connect-SPOService  -Url "https://macbeneu-admin.sharepoint.com"
+Connect-MsolService
 
 $list = @()
 #Counters
