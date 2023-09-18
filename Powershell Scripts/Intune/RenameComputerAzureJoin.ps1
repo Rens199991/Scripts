@@ -1,3 +1,6 @@
+#New script to test: https://niklastinner.medium.com/bulk-autopilot-device-renaming-656ba517d94b (only for autopilot Devices)
+
+
 #Create a tag file just so Intune knows this was installed
 if (-not (Test-Path "$($env:ProgramData)\Microsoft\CXN\Scripts\RenameComputerAzureJoin"))
     {
