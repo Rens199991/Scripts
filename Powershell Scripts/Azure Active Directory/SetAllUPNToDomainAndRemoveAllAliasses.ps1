@@ -1,5 +1,5 @@
 
-#Part 1 set All UPN to default onmicrosoft.com
+#Part 1 set All UPN to default onmicrosoft.comh
 #Connect to your Azure AD tenant
 Connect-AzureAD
 Connect-ExchangeOnline
