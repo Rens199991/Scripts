@@ -54,4 +54,4 @@ foreach ($Mailbox in $Mailboxes)
     {
     Set-Mailbox -Identity $Mailbox.UserPrincipalName -Emailaddresses $Mailbox.UserPrincipalName
     Write-Host "Primary Emailadress is now same as UPN for $Mailbox" -ForegroundColor Green
-    }
+    }k
