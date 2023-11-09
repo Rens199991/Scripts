@@ -1,4 +1,3 @@
-
 #Part 1 set All UPN to default onmicrosoft.com
 #Connect to your Azure AD tenant
 Connect-AzureAD
@@ -19,7 +18,7 @@ foreach ($user in $usersToUpdate)
     #Set the new UPN for the user
     Set-AzureADUser -ObjectId $user.ObjectId -UserPrincipalName $newUPN
 
-    Write-Host "Updated UPN for $($user.DisplayName) from $currentUPN to $newUPN"
+    Write-Host "Updated UPN for $($user.DisplayName) from $currentUPN to $newUPN" -ForegroundColor Green
     }
 
 
@@ -47,26 +46,12 @@ foreach ($Mailbox in $Mailboxes)
     }
 
 
+#Part 3 Set Primary Email Adress to UPN
+#To Do
 
-
-
-#Andere Manier
-<#
-Verwijderen
-
-Connect-MsolService
-Connect-ExchangeOnline
-Get-EXOMailbox "USERPRINCIPALNAME"  | select -ExpandProperty emailaddresses | Select-String -Pattern "smtp"
-Set-Mailbox "USERPRINCIALNAME" -EmailAddresses @{remove="ALIAS"}
-
-Toevoegen
-
-Connect-MsolService
-Connect-ExchangeOnline
-Get-EXOMailbox "USERPRINCIPALNAME"  | select -ExpandProperty emailaddresses | Select-String -Pattern "smtp"
-Set-Mailbox "francis@uny-group.be" -EmailAddresses @{add="test@uny-group.be"}
-
-
-Handige Site zodat je de code niet manueel moet typen in Powershell: https://www.tachytelic.net/2018/12/add-remove-email-alias-powershell/
-Vergeet niet om de admin een super user te maken
-#>
+#Loop through each mailbox
+foreach ($Mailbox in $Mailboxes) 
+    {
+    Set-Mailbox -Identity $Mailbox.UserPrincipalName -Emailaddresses $Mailbox.UserPrincipalName
+    Write-Host "Primary Emailadress is now same as UPN for $Mailbox" -ForegroundColor Green
+    }
