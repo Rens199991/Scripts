@@ -1,4 +1,4 @@
-$userName = "godmode"
+$userName = "Cxnlapsadmin"
 $Userexist = (Get-LocalUser).Name -Contains $userName
 
 
