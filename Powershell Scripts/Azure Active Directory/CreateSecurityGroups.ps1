@@ -162,10 +162,10 @@ $AndroidCorporateOwnedwithWorkprofileDevices = @{
     mailnickname = 'AndroidCorporate-OwnedwithWorkprofileDevices'
     membershiprule = '(device.enrollmentProfileName -match "Android - Corporate-Owned with Workprofile Devices Enrollment Profile") '
 }
-$AndroidCorporateOwnedFullyManagedwithoutWorkprofileDevices = @{
-    Description = 'Android Corporate-Owned Fully Managed without Workprofile Devices'
-    Displayname = 'Android Corporate-Owned Fully Managed without Workprofile Devices'
-    mailnickname = 'AndroidCorporate-OwnedwithoutWorkprofileDevices'
+$AndroidCorporateOwnedFullyManagedDevices = @{
+    Description = 'Android Corporate-Owned Fully Managed Devices'
+    Displayname = 'Android Corporate-Owned Fully Managed Devices'
+    mailnickname = 'AndroidCorporate-OwnedFullyManagedDevices'
     membershiprule = '(device.deviceOSType -eq "AndroidEnterprise") -and (device.enrollmentProfileName -eq null) '
 }
 
@@ -223,7 +223,7 @@ New-MgGroup -BodyParameter ($common + $MicrosoftSurfaceHubDevices)
 New-MgGroup -BodyParameter ($common + $AndroidDevices)
 New-MgGroup -BodyParameter ($common + $AndroidPersonallyOwnedwithWorkprofileDevices)
 New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedwithWorkprofileDevices)
-New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedFullyManagedwithoutWorkprofileDevices)
+New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedFullyManagedDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedwithWorkprofileDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices)
@@ -252,6 +252,6 @@ New-MgGroup -DisplayName 'Management Users'  -MailEnabled:$False  -MailNickName 
 
 New-MgGroup -DisplayName 'Android Personally-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidPersonally-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'Android Corporate-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidCorporate-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
-New-MgGroup -DisplayName 'Android Corporate-Owned Devices Fully Managed without Workprofile Users' -MailEnabled:$False  -MailNickName 'AndroidwithoutWorkprofileUsers' -SecurityEnabled:$true
+New-MgGroup -DisplayName 'Android Corporate-Owned Devices Fully Managed Users' -MailEnabled:$False  -MailNickName 'AndroidFullyManagedUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'iOS/iPadOS Personally-Owned Devices with Workprofile Users' -MailEnabled:$False  -MailNickName 'iOS/iPadOSPersonally-OwnedDeviceswithWorkprofileUsers' -SecurityEnabled:$true
 New-MgGroup -DisplayName 'iOS/iPadOS Personally-Owned Fully Managed Devices without Workprofile Users' -MailEnabled:$False  -MailNickName 'iOS/iPadOSFullyManagedwithoutWorkprofileUsers' -SecurityEnabled:$true
