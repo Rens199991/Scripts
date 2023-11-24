@@ -184,9 +184,9 @@ $iOSiPadOSPersonallyOwnedwithWorkprofileDevices = @{
     mailnickname = 'iOS/iPadOSPersonally-OwnedwithWorkprofileDevices'
     membershiprule = '(device.enrollmentProfileName -match "iOS/iPadOS UserEnrollment") '
 }
-$iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices = @{
-    Description = 'iOS/iPadOS Personally-Owned Fully Managed without Workprofile Devices'
-    Displayname = 'iOS/iPadOS Personally-Owned Fully Managed without Workprofile Devices'
+$iOSiPadOSPersonallyOwnedFullyManagedDevices = @{
+    Description = 'iOS/iPadOS Personally-Owned Fully Managed Devices'
+    Displayname = 'iOS/iPadOS Personally-Owned Fully Managed Devices'
     mailnickname = 'iOS/iPadOSPersonally-OwnedwithoutWorkprofileDevices'
     membershiprule = '(device.enrollmentProfileName -match "iOS/iPadOS DeviceEnrollment") '
 }
@@ -226,7 +226,7 @@ New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedwithWorkprofileDevic
 New-MgGroup -BodyParameter ($common + $AndroidCorporateOwnedFullyManagedDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSDevices)
 New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedwithWorkprofileDevices)
-New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedFullyManagedwithoutWorkprofileDevices)
+New-MgGroup -BodyParameter ($common + $iOSiPadOSPersonallyOwnedFullyManagedDevices)
 
 
 
