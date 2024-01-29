@@ -1,4 +1,4 @@
-if (Get-VpnConnection -Name "Logflow-Azure")
+if (Get-VpnConnection -Name "Allinox")
     {
     #Create a tag file just so Intune knows this was installed
     If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\AddVPNDRNOT"))

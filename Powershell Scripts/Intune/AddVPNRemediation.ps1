@@ -6,11 +6,5 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\AddVPNR"))
     }
 
 #Begin script
-Add-VpnConnection -Name "Logflow-Azure" -ServerAddress 20.76.248.91 -AuthenticationMethod Pap -EncryptionLevel Optional -Force -L2tpPsk "IFFvCORAbP00" -TunnelType L2tp -RememberCredential -SplitTunneling -DnsSuffix "logflow.local"
-Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.3.0/24"
-Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.4.0/24"
-Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.7.0/24"
-Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.8.0/24"
-Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.9.0/24"
-Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.0.1.0/24"
-
+Add-VpnConnection -Name "Allinox" -ServerAddress allinox-headquarters-wired-rkqbptnwzz.dynamic-m.com  -AuthenticationMethod Pap -EncryptionLevel Optional -Force -L2tpPsk "bcJjoD3Tp-A" -TunnelType L2tp -RememberCredential -SplitTunneling -DnsSuffix "beka-cookware.local"
+Add-VpnConnectionRoute -ConnectionName "Allinox" -DestinationPrefix "192.168.0.0/24"
