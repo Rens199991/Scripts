@@ -27,7 +27,7 @@ New-ItemProperty -Path $RegKeyPath -Name $DesktopPath -Value $DesktopImageValue 
 New-ItemProperty -Path $RegKeyPath -Name $DesktopUrl -Value $DesktopImageValue -PropertyType STRING -Force | Out-Null
 
 
-<#Begin Script to change Lockscreen
+#Begin Script to change Lockscreen
 
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 $LockScreenPath = "LockScreenImagePath"
@@ -49,4 +49,3 @@ New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -
 New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force
 New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force
 
-#> 
