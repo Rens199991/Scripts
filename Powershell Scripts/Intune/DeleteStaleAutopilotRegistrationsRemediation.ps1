@@ -14,7 +14,7 @@ Connect-MgGraph -Scopes "DeviceManagementServiceConfig.Read.All, DeviceManagemen
 
 #Specify time range
 $currentTime = Get-Date
-$minAge = $currentTime.AddDays(-500)
+$minAge = $currentTime.AddDays(-1825)
 
 
 #Query Microsoft Graph Endpoints and filter for conditions
