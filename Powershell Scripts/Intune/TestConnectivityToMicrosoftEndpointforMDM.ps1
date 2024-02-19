@@ -30,7 +30,6 @@ Function RunPScript([String] $PSScript){
 Function checkProxy{
     # Check Proxy settings
     Write-Host "Checking winHTTP proxy settings..." -ForegroundColor Yellow
-    Write-Log -Message "Checking winHTTP proxy settings..."
     $global:ProxyServer="NoProxy"
     $winHTTP = netsh winhttp show proxy
     $Proxy = $winHTTP | Select-String server
@@ -41,16 +40,13 @@ Function checkProxy{
     if ($global:ProxyServer -eq "Direct access (no proxy server)."){
         $global:ProxyServer="NoProxy"
         Write-Host "      Access Type : DIRECT"
-        Write-Log -Message "      Access Type : DIRECT"
+     
     }
 
     if ( ($global:ProxyServer -ne "NoProxy") -and (-not($global:ProxyServer.StartsWith("http://")))){
         Write-Host "      Access Type : PROXY"
-        Write-Log -Message "      Access Type : PROXY"
         Write-Host "Proxy Server List :" $global:ProxyServer
-        Write-Log -Message "Proxy Server List : $global:ProxyServer"
         Write-Host "Proxy Bypass List :" $global:Bypass
-        Write-Log -Message "Proxy Bypass List : $global:Bypass"
         $global:ProxyServer = "http://" + $global:ProxyServer
     }
 
@@ -58,59 +54,31 @@ Function checkProxy{
     #CheckwinInet proxy
     Write-Host ''
     Write-Host "Checking winInet proxy settings..." -ForegroundColor Yellow
-    Write-Log -Message "Checking winInet proxy settings..."
     $winInet=RunPScript -PSScript "Get-ItemProperty -Path 'Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings'"
     if($winInet.ProxyEnable){Write-Host "    Proxy Enabled : Yes"; Write-Log -Message "    Proxy Enabled : Yes"}else{Write-Host "    Proxy Enabled : No";Write-Log -Message "    Proxy Enabled : No"}
     $winInetProxy="Proxy Server List : "+$winInet.ProxyServer
     Write-Host $winInetProxy
-    Write-Log -Message $winInetProxy
     $winInetBypass="Proxy Bypass List : "+$winInet.ProxyOverride
     Write-Host $winInetBypass
-    Write-Log -Message $winInetBypass
     $winInetAutoConfigURL="    AutoConfigURL : "+$winInet.AutoConfigURL
     Write-Host $winInetAutoConfigURL
-    Write-Log -Message $winInetAutoConfigURL
 
     return $global:ProxyServer
 }
 
-Function Write-Log{
-    [CmdletBinding()]
-    Param(
-        [Parameter(Mandatory=$False)]
-        [ValidateSet("INFO","WARN","ERROR","FATAL","DEBUG")]
-        [String] $Level = "INFO",
-
-        [Parameter(Mandatory=$True)]
-        [string] $Message,
-
-        [Parameter(Mandatory=$False)]
-        [string] $logfile = "Test-DeviceRegConnectivity.log"
-    )
-    if ($Message -eq " "){
-        Add-Content $logfile -Value " " -ErrorAction SilentlyContinue
-    }else{
-        #$Date= Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff'
-        $Date = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss.fff')
-        Add-Content $logfile -Value "[$date] [$Level] $Message" -ErrorAction SilentlyContinue
-    }
-}
 
 Function Test-DevRegConnectivity{
     $ProxyTestFailed=$false
     Write-Host
     Write-Host "Testing Internet Connectivity..." -ForegroundColor Yellow
-    Write-Log -Message "Testing Internet Connectivity..."
     $ErrorActionPreference= 'silentlycontinue'
     $global:TestFailed=$false
 
     $global:ProxyServer = checkProxy
     Write-Host
     Write-Host "Testing Device Registration Endpoints..." -ForegroundColor Yellow
-    Write-Log -Message "Testing Device Registration Endpoints..."
     if ($global:ProxyServer -ne "NoProxy"){
         Write-Host "Testing connection via winHTTP proxy..." -ForegroundColor Yellow
-        Write-Log -Message "Testing connection via winHTTP proxy..."
         if ($global:login){
             $PSScript = "(Invoke-WebRequest -uri 'https://login.microsoftonline.com/common/oauth2' -UseBasicParsing).StatusCode"
             $TestResult = RunPScript -PSScript $PSScript
@@ -121,7 +89,6 @@ Function Test-DevRegConnectivity{
         if ($TestResult -eq 200){
             Write-Host ''
             Write-Host "Connection to login.microsoftonline.com .............. Succeeded." -ForegroundColor Green
-            Write-Log -Message "Connection to login.microsoftonline.com .............. Succeeded."
         }else{
             $ProxyTestFailed=$true
         }
@@ -135,7 +102,6 @@ Function Test-DevRegConnectivity{
         }
         if ($TestResult -eq 200){
             Write-Host "Connection to device.login.microsoftonline.com ......  Succeeded." -ForegroundColor Green
-            Write-Log -Message "Connection to device.login.microsoftonline.com ......  Succeeded."
         }else{
             $ProxyTestFailed=$true
         }
@@ -149,7 +115,6 @@ Function Test-DevRegConnectivity{
         }
         if ($TestResult -eq 200){
             Write-Host "Connection to enterpriseregistration.windows.net ..... Succeeded." -ForegroundColor Green
-            Write-Log -Message "Connection to enterpriseregistration.windows.net ..... Succeeded."
         }else{
             $ProxyTestFailed=$true
         }
@@ -158,43 +123,35 @@ Function Test-DevRegConnectivity{
     if (($global:ProxyServer -eq "NoProxy") -or ($ProxyTestFailed -eq $true)){
         if($ProxyTestFailed -eq $true){
             Write-host "Connection failed via winHTTP, trying winInet..."
-            Write-Log -Message "Connection failed via winHTTP, trying winInet..." -Level WARN
         }else{
             Write-host "Testing connection via winInet..." -ForegroundColor Yellow
-            Write-Log -Message "Testing connection via winInet..."
         }
         $PSScript = "(Invoke-WebRequest -uri 'https://login.microsoftonline.com/common/oauth2' -UseBasicParsing).StatusCode"
         $TestResult = RunPScript -PSScript $PSScript
         if ($TestResult -eq 200){
             Write-Host ''
             Write-Host "Connection to login.microsoftonline.com .............. Succeeded." -ForegroundColor Green
-            Write-Log -Message "Connection to login.microsoftonline.com .............. Succeeded."
         }else{
             $global:TestFailed=$true
             Write-Host ''
             Write-Host "Connection to login.microsoftonline.com ................. failed." -ForegroundColor Red
-            Write-Log -Message "Connection to login.microsoftonline.com ................. failed." -Level ERROR
         }
         $PSScript = "(Invoke-WebRequest -uri 'https://device.login.microsoftonline.com/common/oauth2' -UseBasicParsing).StatusCode"
         $TestResult = RunPScript -PSScript $PSScript
         if ($TestResult -eq 200){
             Write-Host "Connection to device.login.microsoftonline.com ......  Succeeded." -ForegroundColor Green
-            Write-Log -Message "Connection to device.login.microsoftonline.com ......  Succeeded."
         }else{
             $global:TestFailed=$true
             Write-Host "Connection to device.login.microsoftonline.com .......... failed." -ForegroundColor Red
-            Write-Log -Message "Connection to device.login.microsoftonline.com .......... failed." -Level ERROR
         }
 
         $PSScript = "(Invoke-WebRequest -uri 'https://enterpriseregistration.windows.net/microsoft.com/discover?api-version=1.7' -UseBasicParsing -Headers @{'Accept' = 'application/json'; 'ocp-adrs-client-name' = 'dsreg'; 'ocp-adrs-client-version' = '10'}).StatusCode"
         $TestResult = RunPScript -PSScript $PSScript
         if ($TestResult -eq 200){
             Write-Host "Connection to enterpriseregistration.windows.net ..... Succeeded." -ForegroundColor Green
-            Write-Log -Message "Connection to enterpriseregistration.windows.net ..... Succeeded."
         }else{
             $global:TestFailed=$true
             Write-Host "Connection to enterpriseregistration.windows.net ........ failed." -ForegroundColor Red
-            Write-Log -Message "Connection to enterpriseregistration.windows.net ........ failed." -Level ERROR
         }
     }
 
@@ -203,31 +160,23 @@ Function Test-DevRegConnectivity{
         Write-Host ''
         Write-Host ''
         Write-Host "Test failed: device is not able to communicate with MS endpoints under system account" -ForegroundColor red
-        Write-Log -Message "Test failed: device is not able to communicate with MS endpoints under system account" -Level ERROR
         Write-Host ''
         Write-Host "Recommended actions: " -ForegroundColor Yellow
         Write-Host "- Make sure that the device is able to communicate with the above MS endpoints successfully under the system account." -ForegroundColor Yellow
         Write-Host "- If the organization requires access to the internet via an outbound proxy, it is recommended to implement Web Proxy Auto-Discovery (WPAD)." -ForegroundColor Yellow
         Write-Host "- If you don't use WPAD, you can configure proxy settings with GPO by deploying WinHTTP Proxy Settings on your computers beginning with Windows 10 1709." -ForegroundColor Yellow
         Write-Host "- If the organization requires access to the internet via an authenticated outbound proxy, make sure that Windows 10 computers can successfully authenticate to the outbound proxy using the machine context." -ForegroundColor Yellow
-        Write-Log -Message "Recommended actions:
-        - Make sure that the device is able to communicate with the above MS endpoints successfully under the system account.
-        - If the organization requires access to the internet via an outbound proxy, it is recommended to implement Web Proxy Auto-Discovery (WPAD).
-        - If you don't use WPAD, you can configure proxy settings with GPO by deploying WinHTTP Proxy Settings on your computers beginning with Windows 10 1709.
-        - If the organization requires access to the internet via an authenticated outbound proxy, make sure that Windows 10 computers can successfully authenticate to the outbound proxy using the machine context."
         Write-Host ''
         Write-Host ''
         Write-Host "Script completed successfully." -ForegroundColor Green
-        Write-Log -Message "Script completed successfully."
+
         Write-Host ''
     }else{
         Write-Host ''
         Write-Host "Test passed: Device is able to communicate with MS endpoints successfully under system context" -ForegroundColor Green
-        Write-Log -Message "Test passed: Device is able to communicate with MS endpoints successfully under system context"
         Write-Host ''
         Write-Host ''
         Write-Host "Script completed successfully." -ForegroundColor Green
-        Write-Log -Message "Script completed successfully."
         Write-Host ''
     }
 }
@@ -261,16 +210,8 @@ if($null -ne $Error[0].Exception.Message){
     Write-Host "Test-DeviceRegConnectivity log file has been created." -ForegroundColor Yellow
 }
 Add-Content ".\Test-DeviceRegConnectivity.log" -Value "===========================================================================" -ErrorAction SilentlyContinue
-Write-Log -Message "Test-DeviceRegConnectivity 3.2 has started"
-$msg="Device Name : " + (Get-Childitem env:computername).value
-Write-Log -Message $msg
 Add-Type -AssemblyName System.DirectoryServices.AccountManagement            
-$UserPrincipal = [System.DirectoryServices.AccountManagement.UserPrincipal]::Current
-If ($UserPrincipal.ContextType -ne "Machine"){
-    $UserUPN=whoami /upn
-}
-$msg="User Account: " + (whoami) +", UPN: "+$UserUPN
-Write-Log -Message $msg
+
 
 if (PSasAdmin){
     # PS running as admin.
@@ -278,14 +219,12 @@ if (PSasAdmin){
 }else{
     Write-Host ''
     Write-Host "PowerShell is NOT running with elevated privileges" -ForegroundColor Red
-    Write-Log -Message "PowerShell is NOT running with elevated privileges" -Level ERROR
     Write-Host ''
     Write-Host "Recommended action: This test needs to be running with elevated privileges" -ForegroundColor Yellow
-    Write-Log -Message "Recommended action: This test needs to be running with elevated privileges"
     Write-Host ''
     Write-Host ''
     Write-Host "Script completed successfully." -ForegroundColor Green
-    Write-Log -Message "Script completed successfully."
+
     Write-Host ''
     exit
 }
