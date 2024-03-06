@@ -1,3 +1,4 @@
+#Als het script niet lukt, eens uitloggen en opnieuw authenticeren
 
 Param()
 
