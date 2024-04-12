@@ -1,7 +1,6 @@
 $GroupName = "Teams Creators"
 $AllowGroupCreation = $False
 
-
 Connect-AzureAD
 $settingsObjectID = (Get-AzureADDirectorySetting | Where-object -Property Displayname -Value "Group.Unified" -EQ).id
 
@@ -13,18 +12,16 @@ if(!$settingsObjectID)
     $settingsObjectID = (Get-AzureADDirectorySetting | Where-object -Property Displayname -Value "Group.Unified" -EQ).id
     }
 
-
 $settingsCopy = Get-AzureADDirectorySetting -Id $settingsObjectID
 $settingsCopy["EnableGroupCreation"] = $AllowGroupCreation
-
 
 if($GroupName)
     {
   $settingsCopy["GroupCreationAllowedGroupId"] = (Get-AzureADGroup -SearchString $GroupName).objectid
     }
+
 else
     {
-
 $settingsCopy["GroupCreationAllowedGroupId"] = $GroupName
     }
 
