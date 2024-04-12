@@ -6,11 +6,17 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\CreateRDPShortcutToDesk
     }
 
 #info over special folders in powershell: https://www.devguru.com/content/technologies/wsh/wshshell-specialfolders.html
-#Na test zette hij dit onder C:, volgende keer testen op Public Desktop (AllUsersDesktop ipv Dekstop)
+
 $new_object = New-Object -ComObject WScript.Shell
+
 #Hier de naam aanpassen van rdp file bij test.rdp
+
 $destination = $new_object.SpecialFolders.Item("AllUsersDesktop") + "\test.rdp"
 New-Item $destination
+
+#Hieronder kunnen we de properties van de RDP bepalen, om de eigenschappen van een bestaande RDP te achterhalen kunnen we de RDP opendoen in Notepad
+# Belangrijk, de tick moet na $Destinatinon komen, niet eronder!!!!
+
 Set-Content $destination 'redirectclipboard:i:1
 redirectprinters:i:0
 redirectcomports:i:0
@@ -58,9 +64,3 @@ bitmapcachepersistenable:i:1'
     
     
 
-<#
-New-Item c:\users\public\desktop\<computername>.rdp
-Set-Content C:\Users\public\Desktop\<computername>.rdp 'redirectclipboard:i:1M
-disable cursor setting:i:0
-bitmapcachepersistenable:i:1'
-#>
