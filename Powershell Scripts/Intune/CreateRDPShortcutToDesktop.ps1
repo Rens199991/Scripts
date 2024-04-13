@@ -15,7 +15,7 @@ $destination = $new_object.SpecialFolders.Item("AllUsersDesktop") + "\test.rdp"
 New-Item $destination
 
 #Hieronder kunnen we de properties van de RDP bepalen, om de eigenschappen van een bestaande RDP te achterhalen kunnen we de RDP opendoen in Notepad
-# Belangrijk, de tick moet na $Destinatinon komen, niet eronder!!!!
+#Belangrijk, de tick moet na $Destinatinon komen, niet eronder!!!!
 
 Set-Content $destination 'redirectclipboard:i:1
 redirectprinters:i:0
