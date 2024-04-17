@@ -5,13 +5,6 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundand
     Set-Content -Path "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreenRemediationR\SetDesktopBackgroundandLockscreenRemediationR.ps1.tag" -Value "Installed"
     }   
 
-#Create a tag file just so Intune knows this was installed
-If (-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreen"))
-    {   
-    New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreen"
-    Set-Content -Path "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreen\SetDesktopBackgroundandLockscreen.ps1.tag" -Value "Installed"
-    }
-
 #Begin Script to Change wallpaper
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 $DesktopPath = "DesktopImagePath"

@@ -1,7 +1,7 @@
 $Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 $Name = "DesktopImagePath"
-$ValueWallpaper = "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreenRemediationR\Wallpaper.jpg"
-$ValueLockscreen = "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreenRemediationR\Lockscreen.jpg"
+$ValueWallpaper = "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreen\Wallpaper.jpg"
+$ValueLockscreen = "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreen\Lockscreen.jpg"
 $Registry = Get-ItemProperty -Path $Path -Name $Name -ErrorAction "SilentlyContinue" | Select-Object -ExpandProperty $Name
 
 if ($Registry -eq $ValueWallpaper)
