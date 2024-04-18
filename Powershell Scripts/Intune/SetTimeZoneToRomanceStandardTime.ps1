@@ -1,4 +1,5 @@
 #Create a tag file just so Intune knows this was installed
+#Script moet NIET draaien in User Mode, mag als SYSTEM!
 If (-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\SetTimeZoneToRomanceStandardTime"))
     {   
     New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\SetTimeZoneToRomanceStandardTime"
