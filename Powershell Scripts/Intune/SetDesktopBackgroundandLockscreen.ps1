@@ -11,7 +11,7 @@ $DesktopPath = "DesktopImagePath"
 $DesktopStatus = "DesktopImageStatus"
 $DesktopUrl = "DesktopImageUrl"
 $StatusValue = "1"
-$url = "https://storageintunewallpapers.blob.core.windows.net/intunewallpaper/Wallpaper Valcke Group.png"
+$url = "https://domainalignmentprod.blob.core.windows.net/desktopbackgrounds/BG230524.jpg"
 $DesktopImageValue = "$($env:ProgramData)\CXN\Scripts\SetDesktopBackgroundandLockscreen\Wallpaper.jpg"
 $wc = New-Object System.Net.WebClient
 $wc.DownloadFile($url, $DesktopImageValue)
