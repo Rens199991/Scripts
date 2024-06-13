@@ -5,7 +5,7 @@ If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\AddVPN"))
     Set-Content -Path "$($env:ProgramData)\CXN\Scripts\AddVPN\AddVPN.ps1.tag" -Value "Installed"
     }
 
-#Begin script
+#Begin script, opgepast het Script moet lopen als the Logged On User
 Add-VpnConnection -Name "Logflow-Azure" -ServerAddress 20.76.248.91 -AuthenticationMethod Pap -EncryptionLevel Optional -Force -L2tpPsk "IFFvCORAbP00" -TunnelType L2tp -RememberCredential -SplitTunneling -DnsSuffix "logflow.local"
 Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.3.0/24"
 Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.10.4.0/24"
