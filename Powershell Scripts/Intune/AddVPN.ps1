@@ -18,8 +18,8 @@ Add-VpnConnectionRoute -ConnectionName "Logflow-Azure" -DestinationPrefix "10.0.
 
 #Voorbeeld voor VPN met meraki
 
-#Add VPN Connection
+#Add VPN Connection, opgepast het Script moet lopen als the Logged On User
 Add-VpnConnection -Name "VPN Opsomer & De Lange" -ServerAddress opsomer-cjqkbcdndp.dynamic-m.com -AuthenticationMethod Pap -EncryptionLevel optional -Force -L2tpPsk ZmRTMLcGu-  -TunnelType L2tp -RememberCredential
 
-#Add regkey to ask for VPN Authentication, pc heeft wel reboot nodig om dit te laten werken
+#Add regkey to ask for VPN Authentication, pc heeft wel reboot nodig om dit te laten werken, dit script moeten we runnen in system contect
 New-ItemProperty -Path "HKLM\SYSTEM\CurrentControlSet\Services\PolicyAgent" -Name "AssumeUDPEncapsulationContextOnSendRule" -PropertyType "DWord" -Value 2
