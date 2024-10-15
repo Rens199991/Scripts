@@ -25,8 +25,8 @@ $Loop = $true
 
 while($Loop)
     {
-    $DecryptStatus = Get-BitlockerVolume -MountPoint C: | Select -expandproperty VolumeStatus
-    $DecryptPercentage = Get-BitlockerVolume -MountPoint C: | Select -expandproperty EncryptionPercentage
+    $DecryptStatus = Get-BitlockerVolume -MountPoint C: | Select-Object -expandproperty VolumeStatus
+    $DecryptPercentage = Get-BitlockerVolume -MountPoint C: | Select-Object -expandproperty EncryptionPercentage
 
     if($DecryptStatus -eq "FullyDecrypted")
         {
