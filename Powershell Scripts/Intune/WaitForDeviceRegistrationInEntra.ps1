@@ -93,8 +93,14 @@ If ($events306)
     Exit 3010
     }
 
-If ($events335) { Write-Host $events335.Message }
+If ($events335) 
+    { 
+    Write-Host $events335.Message 
+    Write-Host "Exiting with return code 3010 to indicate a soft reboot is needed."
+    Stop-Transcript
+    Exit 3010
+    }
 
 Write-Host "Script complete, exiting."
-
 Stop-Transcript
+Exit 3010
