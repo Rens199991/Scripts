@@ -14,7 +14,7 @@ Get-MSGraphEnvironment
 
 #Get Context
 Get-MgContext
-Get-Command -Module Microsoft.Graph.Intune
+
 
 $IntuneModule = Get-Module -Name "Microsoft.Graph.Intune" -ListAvailable
 if (!$IntuneModule)
