@@ -15,10 +15,7 @@ Get-MgContext
 $Devices = Get-MgDeviceManagementManagedDevice
  
 Foreach ($Device in $Devices)
-{
- 
-Sync-MgDeviceManagementManagedDevice -ManagedDeviceId $Device.Id
- 
-Write-Host "Sending Sync request to Device with Device name $($Device.DeviceName)" -ForegroundColor Yellow
-  
-}
+    {
+    Sync-MgDeviceManagementManagedDevice -ManagedDeviceId $Device.Id
+    Write-Host "Sending Sync request to Device with Device name $($Device.DeviceName)" -ForegroundColor Yellow
+    }
