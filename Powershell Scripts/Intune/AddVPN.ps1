@@ -1,4 +1,4 @@
-#Create a tag file just so Intune knows this was installed
+#Create a tag file just so Intune knows this was installedd
 If(-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\AddVPN"))
     {
     New-Item -itemtype "directory" -path "$($env:ProgramData)\CXN\Scripts\AddVPN"
