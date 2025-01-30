@@ -1,34 +1,39 @@
-#This must be tenant administration sharepoint site
-#This is the site of sharepoint Admin center: For example https://junctiongi-admin.sharepoint.com/
-Connect-SPOService  -Url "https://macbeneu-admin.sharepoint.com"
-Connect-MsolService
+Param(
+    [Parameter(Mandatory = $True)]
+    [String]
+    $SharepointURL,
+    [Parameter(Mandatory = $True)]
+    [String]
+    $tenantID
+)
 
-$list = @()
-#Counters
-$i = 0
+$scope = 'User.Read.All'
+Connect-MgGraph -TenantId $tenantId -Scopes $scope
+Connect-SPOService -Url $SharepointURL;
 
+$list = @() #list of UPN to pass to the SP command
+$Totalusers = 0 #total user provisioned.
 
 #Get licensed users
-$users = Get-MsolUser -All | Where-Object { $_.islicensed -eq $true }
-#total licensed users
-$count = $users.count
+$users = Get-MgUser -Filter 'assignedLicenses/$count ne 0' -ConsistencyLevel eventual -CountVariable licensedUserCount -All -Select UserPrincipalName
 
 foreach ($u in $users) {
-    $i++
-    Write-Host "$i/$count"
+    $Totalusers++
+    Write-Host "$Totalusers/$($users.Count)"
+    $list += $u.userprincipalname
 
-    $upn = $u.userprincipalname
-    $list += $upn
-
-    if ($i -eq 199) {
+    if ($list.Count -eq 199) {
         #We reached the limit
+        Write-Host "Batch limit reached, requesting provision for the current batch"
         Request-SPOPersonalSite -UserEmails $list -NoWait
         Start-Sleep -Milliseconds 655
         $list = @()
-        $i = 0
     }
 }
 
-if ($i -gt 0) {
+if ($list.Count -gt 0) {
     Request-SPOPersonalSite -UserEmails $list -NoWait
 }
+Disconnect-SPOService
+Disconnect-MgGraph
+Write-Host "Completed OneDrive Provisioning for $Totalusers users"
