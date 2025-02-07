@@ -1,0 +1,10 @@
+{
+    "@odata.type": "#microsoft.graph.winGetApp",
+    "displayName": "Adobe Acrobat Reader",
+    "description": "",
+    "publisher": "Adobe",
+    "packageIdentifier": "XPDP273C0XHQH2", 
+    "installExperience": {
+        "runAsAccount": "system"
+    }
+}
