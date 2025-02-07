@@ -11,7 +11,7 @@ $new_object = New-Object -ComObject WScript.Shell
 
 #Hier de naam aanpassen van rdp file bij test.rdp
 
-$destination = $new_object.SpecialFolders.Item("AllUsersDesktop") + "\OMER-RDS.rdp"
+$destination = $new_object.SpecialFolders.Item("AllUsersDesktop") + "\XIOR-RDS.rdp"
 New-Item $destination
 
 #Hieronder kunnen we de properties van de RDP bepalen, om de eigenschappen van een bestaande RDP te achterhalen kunnen we de RDP opendoen in Notepad
@@ -19,9 +19,9 @@ New-Item $destination
 #Script moet lopen in system/admin mode
 
 Set-Content $destination 'screen mode id:i:2
-use multimon:i:0
-desktopwidth:i:800
-desktopheight:i:600
+use multimon:i:1
+desktopwidth:i:1920
+desktopheight:i:1080
 session bpp:i:32
 winposstr:s:0,3,0,0,800,600
 compression:i:1
@@ -41,29 +41,30 @@ disable menu anims:i:1
 disable themes:i:0
 disable cursor setting:i:0
 bitmapcachepersistenable:i:1
-full address:s:OVDG-W19-RDS01
+full address:s:borgondo.mijnrds.nl
 audiomode:i:0
-redirectprinters:i:1
+redirectprinters:i:0
 redirectcomports:i:0
 redirectsmartcards:i:1
 redirectclipboard:i:1
 redirectposdevices:i:0
 autoreconnection enabled:i:1
-authentication level:i:2
+authentication level:i:0
 prompt for credentials:i:0
 negotiate security layer:i:1
 remoteapplicationmode:i:0
 alternate shell:s:
 shell working directory:s:
-gatewayhostname:s:rds.omer.be
+gatewayhostname:s:gateway.mijnrds.nl
 gatewayusagemethod:i:2
 gatewaycredentialssource:i:4
 gatewayprofileusagemethod:i:1
-promptcredentialonce:i:1
+promptcredentialonce:i:0
 gatewaybrokeringtype:i:0
 use redirection server name:i:0
 rdgiskdcproxy:i:0
-kdcproxyname:s:'
-    
-    
+kdcproxyname:s:
+drivestoredirect:s:*
+devicestoredirect:s:*'
+
 
