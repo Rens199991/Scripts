@@ -26,3 +26,6 @@ else
     Write-Output "Remediation needed"
     exit 1   
     }
+
+
+$ValueLockscreen
