@@ -30,6 +30,20 @@ New-ItemProperty -Path $RegKeyPath -Name $DesktopUrl -Value $DesktopImageValue -
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Begin Script to change Lockscreen
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 $LockScreenPath = "LockScreenImagePath"
