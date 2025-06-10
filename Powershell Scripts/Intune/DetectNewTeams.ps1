@@ -1,12 +1,12 @@
-$TeamsClassic = Test-Path C:\Users\*\AppData\Local\Microsoft\Teams\current\Teams.exe
 $TeamsNew = Get-ChildItem "C:\Program Files\WindowsApps" -Filter "MSTeams_*"
 
-if(!$TeamsClassic -and $TeamsNew)
+if($TeamsNew)
 	{
-    Write-Host "Found it!"
+    Write-Host "Found It"
     exit 0
 	}
 else
 	{
+	 Write-Host "Teams not Found, will install Teams"
     exit 1
 	}
