@@ -7,8 +7,8 @@ If (-not(Test-Path -Path "$($env:ProgramData)\CXN\Scripts\CreateLocalAdministrat
 
 #Script
 $userName = "Lapsadmin"
-New-LocalUser -Name $username -Description "lapsadmin local user account" -NoPassword
-Add-LocalGroupMember -Group "Administrators" -Member $userName
+New-LocalUser -Name $username -Description "lapsadmin local user account" -NoPassword -ErrorAction SilentlyContinue
+Add-LocalGroupMember -Group "Administrators" -Member $userName -ErrorAction SilentlyContinue
   
 
 
